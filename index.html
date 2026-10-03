@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0e1013">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Plan 12 semanas</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<style>
+  :root{
+    --bg:#0e1013; --surface:#16191e; --surface2:#1c2126; --line:#262b32; --line2:#333a42;
+    --txt:#e4e7eb; --dim:#8b939c; --acc:#3fb950; --acc-dim:#1f5f2c;
+    --warn:#d29922; --info:#58a6ff; --bad:#f85149;
+    --tap:40px; --r:6px; --r2:4px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--txt);
+    font:15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    font-variant-numeric:tabular-nums}
+  body{padding-bottom:calc(58px + env(safe-area-inset-bottom))}
+  h1,h2,h3{margin:0;font-weight:600}
+  a{color:var(--info);text-decoration:none}
+  .dim{color:var(--dim)}
+  .sm{font-size:.82rem}
+
+  /* ---------- cabecera ---------- */
+  header#topbar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);
+    padding:calc(env(safe-area-inset-top) + .5rem) .75rem .5rem}
+  .tb{display:flex;justify-content:space-between;align-items:flex-end;max-width:680px;margin:0 auto}
+  .tb-t{font-size:1.05rem;font-weight:600;letter-spacing:-.01em}
+  .tb-t .dim{font-size:.8rem;font-weight:400;margin-left:1px}
+  .tb-s{font-size:.74rem;color:var(--dim);margin-top:1px}
+  .tb-r{text-align:right}
+
+  /* ---------- estructura ---------- */
+  main{max-width:680px;margin:0 auto;padding:.75rem .75rem 2rem}
+  .sec{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);margin-bottom:.6rem;overflow:hidden}
+  .sec.flat{background:transparent;border:0;border-bottom:1px solid var(--line);border-radius:0;margin:.9rem 0 .35rem}
+  .sec.flat .sec-h{padding:.3rem .75rem .1rem;border-bottom:0}
+  .sec.flat .sec-b{padding:0 .75rem .3rem}
+  .sec-h{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;
+    padding:.55rem .75rem;border-bottom:1px solid var(--line)}
+  .sec-h h2{font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:var(--dim);font-weight:600}
+  .sec-h .meta{font-size:.74rem;color:var(--dim)}
+  .sec-b{padding:.15rem .75rem .6rem}
+
+  /* ---------- filas ---------- */
+  .fila{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;
+    padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.045);font-size:.9rem}
+  .sec-b > .fila:last-child,.ficha-b > .fila:last-child{border-bottom:0}
+  .f-l b{font-weight:600}
+  .f-s{display:block;color:var(--dim);font-size:.78rem;margin-top:1px}
+  .f-v{text-align:right;white-space:nowrap}
+  .f-v input{margin-left:.35rem}
+  .total{display:flex;justify-content:space-between;align-items:baseline;
+    margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--line2);font-size:.95rem}
+  .total b{color:var(--acc);font-size:1.05rem}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 .9rem}
+  .row-in{display:flex;gap:.4rem;margin-top:.5rem}
+  .row-in input{flex:1}
+
+  /* ---------- controles ---------- */
+  button{font:inherit;color:inherit;background:var(--surface2);border:1px solid var(--line2);
+    border-radius:var(--r2);padding:.45rem .7rem;min-height:var(--tap);cursor:pointer}
+  button:active{border-color:var(--acc)}
+  .btn{display:inline-block;text-align:center;font-size:.88rem}
+  .btn.sm{font-size:.79rem;padding:.3rem .5rem;min-height:32px}
+  .btn.block{display:block;width:100%;margin-top:.4rem}
+  .btn.primary{background:var(--acc);border-color:var(--acc);color:#08130c;font-weight:600}
+  .btn.ghost{background:transparent;border-color:var(--line);color:var(--dim)}
+  .btn.danger{color:#f0a6a0;border-color:#4a2a28;background:transparent}
+  .acciones{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem}
+  input,select{font:inherit;color:inherit;background:#0f1216;border:1px solid var(--line2);
+    border-radius:var(--r2);padding:.35rem .5rem;min-height:38px;width:100%;font-variant-numeric:tabular-nums}
+  input:disabled{opacity:.35}
+  input[type=number]{-moz-appearance:textfield;appearance:textfield}
+  input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  input.num{width:5.6rem;text-align:right}
+  input.pasos{width:100%;text-align:right}
+  input[type=file]{padding:.3rem;font-size:.8rem}
+  .file{font-size:.85rem;color:var(--dim);display:block}
+
+  /* ---------- etiquetas y avisos ---------- */
+  .tag{display:inline-block;font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;
+    border:1px solid var(--line2);border-radius:3px;padding:1px 5px;color:var(--dim);white-space:nowrap}
+  .tag.acc{color:var(--acc);border-color:var(--acc-dim)}
+  .tag.warn{color:var(--warn);border-color:#5c4a15}
+  .aviso{margin:.5rem 0;padding:.5rem .6rem;border-left:3px solid var(--line2);
+    background:var(--surface2);border-radius:0 var(--r2) var(--r2) 0;font-size:.84rem}
+  .aviso.ok{border-left-color:var(--acc)}
+  .aviso.info{border-left-color:var(--info)}
+  .aviso.warn{border-left-color:var(--warn);color:#e8d9ae}
+  .pista{font-size:.84rem;color:var(--dim);margin:.4rem 0}
+  .prev{font-size:.8rem;color:var(--info);margin:.35rem 0}
+
+  /* ---------- tarjeta de ejercicio ---------- */
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:.65rem .75rem;margin-bottom:.55rem}
+  .card.ex.hecho{border-color:var(--acc-dim)}
+  .ex-h{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;flex-wrap:wrap}
+  .ex-t b{font-size:.95rem}
+  .ex-t .dim{font-size:.78rem}
+  .ex-m{display:flex;gap:.3rem;flex-wrap:wrap}
+  table.sets{width:100%;border-collapse:collapse;margin-top:.5rem}
+  table.sets td{padding:.25rem .2rem;border-bottom:1px solid rgba(255,255,255,.045);vertical-align:middle}
+  table.sets td.n{width:1.6rem;color:var(--dim);font-size:.8rem}
+  table.sets td.rir{width:4.2rem}
+  table.sets td.ck{width:3rem;text-align:right}
+  table.sets input{text-align:right;min-height:40px}
+  table.sets input::-webkit-outer-spin-button,table.sets input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  table.sets input[type=number]{-moz-appearance:textfield}
+  .ckb{min-height:40px;min-width:40px;padding:.2rem;background:transparent}
+  .ckb.on{background:var(--acc);border-color:var(--acc);color:#08130c;font-weight:700}
+  table.log td{text-align:left;font-size:.84rem}
+  table.log td.der{text-align:right}
+  details.ficha{border-top:1px solid var(--line);margin-top:.55rem;padding-top:.45rem}
+  details.ficha summary{cursor:pointer;font-size:.74rem;text-transform:uppercase;letter-spacing:.07em;color:var(--dim)}
+  .ficha-b{padding-top:.45rem}
+  .ficha-b p{margin:.4rem 0;font-size:.85rem;color:var(--dim)}
+  .vlink{display:block;font-size:.82rem;margin-top:.25rem}
+  .vlink.sm{font-size:.8rem}
+
+  /* ---------- pasos de la semana ---------- */
+  .cardio-txt{font-size:.88rem;padding:.45rem 0;border-bottom:1px solid var(--line)}
+  .dias{margin:.35rem 0}
+  .dia{display:grid;grid-template-columns:auto 1fr 5.2rem auto;gap:.45rem;align-items:center;
+    padding:.3rem 0;border-bottom:1px solid rgba(255,255,255,.045)}
+  .dia.hoy{background:rgba(63,185,80,.06);margin:0 -.4rem;padding:.3rem .4rem}
+  .dia-d{font-size:.85rem}
+  .dia-k{font-size:.75rem;color:var(--dim);min-width:3.6rem;text-align:right}
+  .dia input.pasos{min-height:34px;padding:.2rem .4rem}
+  .dia .ckb{min-width:34px;min-height:34px}
+
+  /* ---------- gráficos y listas ---------- */
+  .spark,.barchart{width:100%;display:block;margin:.3rem 0}
+  .barchart{height:78px}
+  .prog{padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.045)}
+  .chips{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.35rem}
+  .nivel{padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,.045)}
+  .nivel-h{font-size:.88rem}
+  .bloque{padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.045)}
+  .bloque-h{font-size:.88rem}
+  .glos{margin:.4rem 0 .2rem .6rem}
+  .lista{margin:.4rem 0 .2rem 1.1rem;padding:0;font-size:.87rem}
+  .lista li{margin-bottom:.25rem}
+
+  /* ---------- descanso y navegación ---------- */
+  .timerbar{position:fixed;left:0;right:0;bottom:calc(58px + env(safe-area-inset-bottom));z-index:30;
+    background:var(--info);color:#06121f;display:flex;align-items:center;gap:.5rem;
+    padding:.45rem .75rem;font-weight:600;font-size:.9rem}
+  .timerbar.hide{display:none}
+  .timerbar button{background:rgba(0,0,0,.15);border-color:rgba(0,0,0,.2);color:#06121f;min-height:34px}
+  nav#tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;
+    background:var(--bg);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+  nav#tabs a{flex:1;text-align:center;text-decoration:none;color:var(--dim);
+    font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;padding:.75rem .2rem;
+    border-top:2px solid transparent}
+  nav#tabs a.on{color:var(--txt);border-top-color:var(--acc)}
+  .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(66px + env(safe-area-inset-bottom));
+    background:var(--surface2);border:1px solid var(--line2);border-radius:var(--r2);
+    padding:.5rem .85rem;z-index:60;font-size:.85rem;opacity:0;transition:opacity .15s;
+    pointer-events:none;max-width:92vw;text-align:center}
+  .toast.on{opacity:1}
+
+  @media print{
+    nav#tabs,.timerbar,.noprint,.acciones{display:none !important}
+    html,body{background:#fff;color:#000;font-size:11pt}
+    main{padding:0;max-width:none}
+    .sec{border:1px solid #999;background:#fff;color:#000;break-inside:avoid;margin-bottom:.4rem}
+    .sec-h{border-bottom:1px solid #bbb}
+    .sec-h h2,.dim,.f-s,.prev,.pista{color:#333}
+    .total b{color:#000}
+  }
+</style>
+</head>
+<body>
+<header id="topbar"></header>
+<main id="view"></main>
+<div id="timerbar" class="timerbar hide"></div>
+<nav id="tabs">
+  <a href="#hoy" data-tab="hoy">Hoy</a>
+  <a href="#progreso" data-tab="progreso">Progreso</a>
+  <a href="#plan" data-tab="plan">Plan</a>
+  <a href="#ajustes" data-tab="ajustes">Ajustes</a>
+</nav>
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

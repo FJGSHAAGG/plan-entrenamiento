@@ -1,0 +1,12 @@
+# Ficheros locales: NO se publican.
+# Motivo: llevan rutas del equipo, la IP de la red local, unidades de systemd, o pruebas
+# con datos personales. Lo que se publica es solo la app: index.html, app.js, sw.js,
+# manifest.webmanifest, icons/ y .nojekyll.
+plan12w.service
+plan12w-tunnel.service
+servir.sh
+publicar_en_pages.sh
+hacer_iconos.py
+tests.js
+_preview.html
+*.bundle
