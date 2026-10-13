@@ -3,12 +3,12 @@
    Estado en localStorage, sin red, sin cuentas. Exporta/importa JSON y CSV. */
 
 const STORE_KEY = 'plan12w.v1';
-const BUILD = '2026-10-03.7';   /* súbelo junto con CACHE en sw.js al tocar index.html o app.js */
+const BUILD = '2026-10-13.1';   /* súbelo junto con CACHE en sw.js al tocar index.html o app.js */
 
 /* ---------- Definición del plan (espejo del documento de 12 semanas) ---------- */
 
 const EX = [
-  { id:'remo', block:1, name:'Remo invertido', en:'inverted row', kind:'reps', sets:3, min:6, max:12, rest:90, step:1,
+  { id:'remo', block:1, name:'Remo invertido', en:'inverted row', kind:'reps', sets:3, min:6, max:12, rest:60, step:1,
     que:'Tiras de tu propio cuerpo hacia la barra tumbado casi en horizontal, con los talones en el suelo. Es un remo: trabajas la espalda y los brazos (los músculos de tirar).',
     como:'Barra a la altura de la cadera. Agárrala, camina los pies hacia delante y déjate caer hacia atrás con el cuerpo recto como una tabla, brazos estirados. Tira llevando el pecho hacia la barra, con los codos hacia atrás, y baja controlando 2 segundos. Cuanto más tumbado estés, más duro; cuanto más de pie, más fácil.',
     errores:'Encoger los hombros hacia las orejas; dejar caer la cadera; subir solo la cabeza; rebotar al bajar.',
@@ -18,7 +18,7 @@ const EX = [
             { t:'Barra al pecho, pies más adelante' },
             { t:'Pies elevados en una silla' },
             { t:'Pies elevados con 1 s de pausa en el pecho', min:5, max:10 }] },
-  { id:'flexiones', block:2, name:'Flexiones', en:'push-up', kind:'reps', sets:3, min:5, max:12, rest:90, step:1,
+  { id:'flexiones', block:2, name:'Flexiones', en:'push-up', kind:'reps', sets:3, min:5, max:12, rest:60, step:1,
     que:'Empujas tu propio peso con los brazos: pecho, hombros y tríceps.',
     como:'Manos en la barra (o en el suelo) un poco más anchas que los hombros, a la altura del pecho. Cuerpo en línea recta de la cabeza a los talones, glúteo y abdomen apretados. Baja hasta que el pecho casi toque y empuja. Los codos se abren unos 45° respecto al tronco, no en cruz.',
     errores:'Cadera que cae o culo en alto; cuello adelantado; bajar solo un palmo; codos abiertos a 90°; media flexión y contarla entera.',
@@ -29,7 +29,7 @@ const EX = [
             { t:'Rodillas apoyadas en el suelo', min:6, max:12 },
             { t:'Flexión completa en el suelo' },
             { t:'Flexión con pies elevados', min:4, max:10 }] },
-  { id:'sentadilla', block:3, name:'Sentadilla al aire', en:'bodyweight squat', kind:'reps', sets:3, min:10, max:15, rest:90, step:1,
+  { id:'sentadilla', block:3, name:'Sentadilla al aire', en:'bodyweight squat', kind:'reps', sets:3, min:10, max:15, rest:60, step:1,
     que:'Sentarse y levantarse sin silla. Trabajas los muslos y los glúteos, y es el mismo movimiento que haces al agacharte a coger algo del suelo.',
     como:'Pies a la anchura de los hombros, punteras un poco hacia fuera. Baja llevando la cadera hacia atrás y hacia abajo, como si te sentaras en una silla, con el pecho alto y el peso repartido por todo el pie. Baja hasta donde controles (muslos paralelos al suelo es el objetivo) y sube apretando el glúteo.',
     errores:'Levantar los talones del suelo; rodillas que se meten hacia dentro; redondear la espalda en la parte baja; bajar dos dedos y llamarlo sentadilla.',
@@ -39,7 +39,7 @@ const EX = [
             { t:'Sentadilla completa' },
             { t:'Búlgara con el pie de atrás elevado', min:6, max:12, perSide:true },
             { t:'A una pierna asistida (apoyándote en la pared)', min:4, max:10, perSide:true }] },
-  { id:'zancadas', block:3, name:'Zancadas caminando', en:'walking lunge', kind:'reps', sets:2, min:8, max:10, rest:90, step:1, perSide:true,
+  { id:'zancadas', block:3, name:'Zancadas caminando', en:'walking lunge', kind:'reps', sets:2, min:8, max:10, rest:60, step:1, perSide:true,
     que:'Pasos largos alternando piernas: fuerza de pierna y equilibrio.',
     como:'Da un paso largo hacia delante y baja la rodilla de atrás hasta casi tocar el suelo, con el tronco recto. La rodilla de delante no pasa la punta del pie y el pie de atrás apoya de puntillas. Empuja con la pierna delantera para volver a estar de pie y encadena con la otra pierna. Necesitas unos dos metros libres.',
     errores:'Pasos demasiado cortos (la rodilla se va hacia delante); inclinarse hacia delante; ir rápido y perder el equilibrio; hacer el doble de una pierna que de la otra.',
@@ -48,16 +48,16 @@ const EX = [
     ladder:[{ t:'Zancada estática con apoyo', min:8, max:12 },
             { t:'Zancada caminando' },
             { t:'Zancada búlgara con el pie de atrás elevado', min:6, max:10 }] },
-  { id:'gluteo', block:4, name:'Puente de glúteo', en:'glute bridge', kind:'reps', sets:3, min:12, max:15, rest:60, step:1,
-    que:'Tumbado boca arriba, levantas la cadera apretando el glúteo. Es lo que compensa las horas sentado y protege tu zona lumbar.',
-    como:'Túmbate boca arriba con las rodillas dobladas y los pies apoyados a la anchura de la cadera, cerca del culo. Aprieta el glúteo y sube la cadera hasta que tronco y muslos queden en línea recta. Aguanta 1-2 segundos arriba y baja sin dejarla caer de golpe.',
-    errores:'Subir arqueando la espalda baja (lo notas en la lumbar, no en el glúteo); pies demasiado lejos; subir y bajar rápido sin apretar arriba.',
-    videos:[{id:'OUgsJ8-Vi0E', t:'How to Perform the Perfect Glute Bridge', ch:'Airrosti'}],
-    tip:'Sube la cadera apretando el glúteo hasta alinear tronco y piernas, 1 s arriba. No arquees la lumbar para subir más.',
-    ladder:[{ t:'A dos piernas' },
+  { id:'gluteo', block:4, name:'Hip thrust en silla', en:'hip thrust', kind:'reps', sets:2, min:10, max:15, rest:45, step:1,
+    que:'Empujas la cadera hacia arriba con los hombros apoyados en el asiento de una silla, apretando el glúteo. Trabaja glúteo y parte de atrás del muslo; compensa las horas sentado y protege la lumbar.',
+    como:'Siéntate en el suelo con la espalda apoyada contra el canto del asiento de la silla, de modo que los hombros queden sobre el asiento. Pies a la anchura de la cadera, cerca del culo. Aprieta el glúteo y sube la cadera hasta dejar el tronco horizontal, con la barbilla un poco recogida. Aguanta 1 segundo arriba apretando el glúteo y baja sin dejarte caer de golpe.',
+    errores:'Arquear la lumbar para subir más (se nota en la espalda, no en el glúteo); apoyar el cuello en vez de los hombros; pies demasiado lejos de la silla; subir y bajar rápido sin apretar arriba.',
+    videos:[{id:'RR0oZhhUVWo', t:'Bodyweight Hip Thrust', ch:'Get Strong with Emily'}, {id:'PCzON8KAV1A', t:'Hip Thrust - At Home', ch:'Casey Shipp'}],
+    tip:'Hombros sobre el asiento de la silla, pies cerca del culo. Sube apretando el glúteo hasta el tronco horizontal y aguanta 1 s arriba. No arquees la lumbar.',
+    ladder:[{ t:'Hombros en la silla, dos piernas' },
             { t:'A una pierna', min:8, max:12, perSide:true },
             { t:'A una pierna con el pie elevado', min:8, max:12, perSide:true }] },
-  { id:'plancha', block:5, name:'Plancha', en:'plank', kind:'time', sets:3, min:15, max:45, rest:45, step:5, unit:'s',
+  { id:'plancha', block:5, name:'Plancha', en:'plank', kind:'time', sets:2, min:15, max:45, rest:30, step:5, unit:'s',
     que:'Mantener el cuerpo recto e inmóvil apoyado en los codos. Trabajas abdomen y lumbar: el trabajo es que la cadera no caiga, no aguantar la respiración.',
     como:'Codos justo debajo de los hombros, antebrazos en el suelo, pies juntos o a la anchura de la cadera. Aprieta abdomen y glúteo, mete un poco el pubis hacia arriba y respira con normalidad. Cuerpo en línea: ni cadera caída ni culo alto.',
     errores:'Cadera que se hunde; culo en alto; aguantar la respiración; seguir cuando la postura ya se ha roto (mejor 15 s bien que 45 s mal).',
@@ -66,16 +66,7 @@ const EX = [
     ladder:[{ t:'Plancha normal' },
             { t:'Plancha con un pie levantado', min:15, max:40 },
             { t:'Plancha con toque de hombro', min:10, max:30 }] },
-  { id:'deadbug', block:5, name:'Dead bug', en:'dead bug', kind:'reps', sets:2, min:8, max:8, rest:45, step:1, perSide:true,
-    que:'Boca arriba, extiendes brazo y pierna contrarios sin que la espalda baja se despegue del suelo. Enseña a tu abdomen a sujetar mientras las piernas se mueven.',
-    como:'Túmbate boca arriba con las rodillas dobladas a 90° y los brazos hacia el techo. Pega la lumbar al suelo (como si aplastaras una hoja de papel) y mantén esa presión. Extiende despacio el brazo derecho por encima de la cabeza y la pierna izquierda hacia delante, sin que la espalda se despegue; vuelve y cambia de lado.',
-    errores:'Arquear la lumbar al estirar la pierna; ir rápido; aguantar la respiración; estirar la pierna más de lo que puedes controlar (mejor menos recorrido).',
-    videos:[{id:'GbSC02oU3To', t:'How to Do a Dead Bug', ch:'Hinge Health'}],
-    tip:'Tumbado, extiende brazo y pierna contrarios con la lumbar pegada al suelo. Si se despega, reduce el rango.',
-    ladder:[{ t:'Pies apoyados, solo brazos', min:8, max:12 },
-            { t:'Brazo y pierna contrarios' },
-            { t:'Con la pierna estirada', min:6, max:8 }] },
-  { id:'tiron', block:6, name:'Colgado y negativas', en:'dead hang / pull-up negatives', kind:'time', sets:3, min:15, max:20, rest:90, step:5, unit:'s', phased:true,
+  { id:'tiron', block:6, name:'Colgado y negativas', en:'dead hang / pull-up negatives', kind:'time', sets:3, min:15, max:20, rest:60, step:5, unit:'s', phased:true,
     que:'El camino hacia tu primera dominada. Tirón vertical = tirar de tu peso hacia arriba colgado de la barra. Se entrena en tres pasos: aguantarte colgado, bajar frenando (negativas) y por fin subir solo.',
     como:'Agarra la barra alta con los brazos estirados y cuélgate con los hombros activos (no del todo sueltos). Colgado pasivo: aguanta el tiempo con el cuerpo quieto, sin balancearte. Negativas: sube con un salto o un escalón hasta pasar la barbilla por encima de la barra y baja lo más lento que puedas, unos 5 segundos. Empieza con agarre supino (palmas hacia ti): es el más fácil.',
     errores:'Colgarse con los hombros totalmente relajados durante todo el rato; hacer negativas cayendo de golpe; balancearse para subir; usar una barra mal anclada.',
@@ -105,7 +96,7 @@ const BLOCK_INFO = {
   1:{ en:'horizontal pull', text:'Tiras de tu propio cuerpo hacia la barra estando casi tumbado. Es el remo: espalda y brazos.' },
   2:{ en:'push', text:'Empujas tu peso con los brazos, con las manos en la barra o en el suelo. Pecho, hombros y tríceps.' },
   3:{ en:'legs', text:'Pierna completa: sentadilla y zancadas. Sin material.' },
-  4:{ en:'posterior chain', text:'Glúteo y parte de atrás del muslo, tumbado boca arriba. Compensa las horas sentado.' },
+  4:{ en:'posterior chain', text:'Glúteo y parte de atrás del muslo. Compensa las horas sentado.' },
   5:{ en:'core', text:'Abdomen y zona lumbar: aguantar la posición sin que la cadera caiga.' },
   6:{ en:'vertical pull', text:'Tirar de tu peso hacia arriba colgado de la barra alta. El camino hacia la dominada.' },
   7:{ en:'cardio', text:'Caminar y correr. Va aparte de los días de fuerza.' }
@@ -114,11 +105,10 @@ const BLOCK_INFO = {
 const WARMUP_VIDEO = { id:'1Y0YjXS9sKI', t:'Cat Cow (gato-camello)', ch:'Hinge Health' };
 
 const WARMUP = [
-  'Marchar en el sitio o caminar por casa: 2 min',
+  'Marchar en el sitio o caminar por casa: 1-2 min',
   'Gato-camello: 8 repeticiones lentas',
   'Círculos de hombros: 10 alante + 10 atrás',
-  'Sentadilla al aire lenta: 10',
-  'Colgado pasivo en la barra: 2 × 15 s'
+  'Sentadilla al aire lenta: 10'
 ];
 
 const CARDIO = [
@@ -714,7 +704,7 @@ function renderHoy() {
   } else {
     html += sec('Entrenamiento de hoy', `${hechas}/3 esta semana`, `
       ${fila('Sesión de fuerza', hechas >= 3 ? 'Completa esta semana' : (hechas === 0 ? 'Pendiente' : `${hechas} hecha${hechas > 1 ? 's' : ''}`))}
-      <div class="dim sm">6 bloques, 20-30 min. Los tres días de fuerza nunca seguidos.</div>
+      <div class="dim sm">6 bloques, ~30 min. Los tres días de fuerza nunca seguidos.</div>
       <button class="btn primary block" data-act="start">Empezar sesión de hoy</button>
       <div class="acciones"><button class="btn sm ghost" data-act="start-yesterday">Registrar la de ayer</button>
       <button class="btn sm ghost" data-act="ir" data-ruta="#plan">Ver el plan</button></div>`);
@@ -724,7 +714,7 @@ function renderHoy() {
   html += semanaPasosHTML();
   html += pesoSemanaHTML();
 
-  html += sec('Calentamiento', '5 min, siempre', `
+  html += sec('Calentamiento', '3 min, siempre', `
     <ul class="lista">${WARMUP.map(w => `<li>${esc(w)}</li>`).join('')}</ul>
     ${videoLinks({ videos: [WARMUP_VIDEO] }, true)}`);
 
@@ -1234,6 +1224,20 @@ function onAction(act, el) {
   }
 }
 
+function flash(msg) {
+  let t = document.getElementById('flash');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'flash';
+    t.style.cssText = 'position:fixed;left:50%;bottom:1.2rem;transform:translateX(-50%);background:#202024;color:#f5f5f7;padding:.6rem 1rem;border-radius:10px;font-size:.85rem;line-height:1.3;z-index:999;opacity:0;transition:opacity .3s;max-width:90vw;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.35);';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.style.opacity = '1';
+  clearTimeout(flash._t);
+  flash._t = setTimeout(() => { t.style.opacity = '0'; }, 2800);
+}
+
 function onInput(el) {
   const kind = el.dataset.in;
   if (kind === 'v' || kind === 'rir') {
@@ -1242,6 +1246,9 @@ function onInput(el) {
     if (!entry) return;
     entry.sets[Number(el.dataset.i)][kind] = el.value;
     save();
+    if (kind === 'rir' && num(el.value) === 0 && state.current.week <= 6) {
+      flash('Deja 2-3 en reserva estas primeras 6 semanas: no entrenes al fallo.');
+    }
   } else if (kind === 'start') {
     state.start = el.value || state.start;
     save();

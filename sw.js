@@ -1,6 +1,6 @@
 /* Service worker: guarda la app en caché para que funcione sin conexión.
    Sube el número de CACHE al cambiar index.html o app.js. */
-const CACHE = 'plan12w-v11';
+const CACHE = 'plan12w-v12';
 const ASSETS = [
   './', './index.html', './app.js', './manifest.webmanifest',
   './icons/icon-192.png', './icons/icon-512.png', './icons/icon-maskable-512.png'
